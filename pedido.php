@@ -65,7 +65,7 @@ if ($cart->getTotal() > 0) {
             </tr>
             <?php foreach ($items as $item) : ?>
                 <tr>
-                    <td><img src="imagens/<?= $pedido->read("produto", "imagem", "produto_id", "{$item['produto_id']}")['imagem'] ?>"></td>
+                    <td><img src="imagens/<?= $pedido->read("produto", "imagem", "produto_id", "{$item['produto_id']}")['imagem'] ?>" height="150"></td>
                     <td><?= $pedido->read("produto", "nome", "produto_id", "{$item['produto_id']}")['nome'] ?></td>
                     <td><?= $pedido->read("produto", "categoria", "produto_id", "{$item['produto_id']}")['categoria'] ?></td>
                     <td>R$ <?= number_format($item['valor_unitario'], 2, ',', '.') ?></td>
