@@ -12,7 +12,7 @@ class Connect extends PDO
             $user = 'root';
             $password = '';
             $database = 'carrinho';
-            $url = 'localhost';
+            $url = 'localhost:3304';
             $connect = new PDO('mysql:host=' . $url . ';dbname=' . $database, $user, $password);
             $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

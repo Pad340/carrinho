@@ -39,7 +39,7 @@ if (isset($_GET['id'])) {
 <body>
 <header>
     <h1>Carrinho</h1>
-    <a href='index.php'>Voltar às compras</a>
+    <a style="color: black; border: 1px solid black" href='index.php'>Voltar às compras</a>
 </header>
 <main>
     <ul>

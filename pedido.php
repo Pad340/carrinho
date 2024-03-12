@@ -48,7 +48,7 @@ if ($cart->getTotal() > 0) {
 <body>
 <header>
     <h1>Gerar pedido</h1>
-    <a href='index.php'>Voltar às compras</a>
+    <a style="color: black; border: 1px solid black" href='index.php'>Voltar às compras</a>
 </header>
 <main>
     <?php if (isset($lastID)) { ?>

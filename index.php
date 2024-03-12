@@ -40,23 +40,24 @@ if (isset($_GET['id'])) {
 <body>
 <header>
     <h1>Produtos</h1>
-    <a href="meuCarrinho.php">Ver carrinho</a>
+    <a style="color: black; border: 1px solid black" href="meuCarrinho.php">Ver carrinho</a>
+    <?php if (isset($product)) echo "<h1>". $product->getQuantidade() . "x " . $product->getNome() . " adicionado ao carrinho!</h1>"; ?>
 </header>
 <main>
     <div class='quebra'>
         <ul>
             <?php foreach ($products as $product) {
-                echo "<li>
+                echo "<li><div style='text-align: center; font-size: 20pt'>
             <b>{$product['nome']}</b>
             <br>
             {$product['categoria']}
             <br>
-            R$ " . number_format($product['valor'], "2", ",", ".") . "
+            R$ " . number_format($product['valor'], '2', ',', '.') . "
             <br>
              <img src='imagens/{$product['imagem']}' height='150'>
             <br>
             <a href='?id={$product['produto_id']}'>Adicionar ao carrinho</a>
-            </li>
+            </div></li>
             <br>";
             } ?>
         </ul>
