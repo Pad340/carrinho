@@ -1,5 +1,6 @@
 <?php
 
+namespace modelos;
 class Produto
 {
     private int $produtoID;

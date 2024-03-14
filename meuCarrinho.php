@@ -1,7 +1,7 @@
 <?php
 
 require 'Carrinho.class.php';
-require 'Produto.class.php';
+require 'modelos/Produto.class.php';
 
 session_start();
 
@@ -40,6 +40,7 @@ if (isset($_GET['id'])) {
 <header>
     <h1>Carrinho</h1>
     <a style="color: black; border: 1px solid black" href='index.php'>Voltar às compras</a>
+    <a style="color: black; border: 1px solid black" href="listarPedidos.php">Resumo de pedidos</a>
 </header>
 <main>
     <ul>
@@ -47,7 +48,7 @@ if (isset($_GET['id'])) {
             <p>Nenhum produto no carrinho</p>
         <?php endif; ?>
 
-        <?php foreach ($productsInCart as $product) : ?>
+        <?php foreach ($productsInCart as $product) { ?>
             <li>
                 <?= $product->getNome(); ?>
                 <br>
@@ -63,12 +64,12 @@ if (isset($_GET['id'])) {
                 <div><a href='?id=<?= $product->getProdutoID(); ?>'>Remover</a></div>
             </li>
             <br>
-        <?php endforeach; ?>
+        <?php } ?>
 
-        <?php if ($productsInCart): ?>
+        <?php if ($productsInCart) { ?>
             <a href='?removeAll'>Esvaziar carrinho</a>
             <br>
-        <?php endif; ?>
+        <?php } ?>
 
         <br>
         <li>Total: R$ <?= number_format($cart->getTotal(), 2, ',', '.'); ?></li>

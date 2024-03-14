@@ -7,37 +7,39 @@ use PDOException;
 
 class CRUD
 {
-    public function read(string $table, string $column = "*", string $condition = null, $valor = null, $all = false)
+    public function read(string $table, string $column = "*", string $condition = null, $all = false)
     {
-        if ($condition && $valor) {
-            $query = "SELECT {$column} FROM {$table} WHERE {$condition} = :{$condition};";
 
-            try {
-                $stmt = Connect::getInstance()->prepare($query);
-                $stmt->bindParam(":{$condition}", $valor);
-                $stmt->execute();
-                if ($all) {
-                    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-                }
-                return $stmt->fetch(PDO::FETCH_ASSOC);
+        $query = "SELECT {$column} FROM {$table} {$condition}";
 
-            } catch (PDOException $exception) {
-                var_dump($exception);
-                return false;
-            }
-
-        } else {
-            $query = "SELECT {$column} FROM {$table};";
-
-            try {
-                $stmt = Connect::getInstance()->query($query);
-                $stmt->execute();
-
+        try {
+            $stmt = Connect::getInstance()->prepare($query);
+            $stmt->execute();
+            if ($all) {
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $exception) {
-                var_dump($exception);
-                return false;
             }
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $exception) {
+            var_dump($exception);
+            return false;
+        }
+
+    }
+
+    public function fullRead(string $query)
+    {
+        try {
+            $stmt = Connect::getInstance()->prepare($query);
+
+            if ($stmt->execute()) {
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            return false;
+
+        } catch (PDOException $exception) {
+            var_dump($exception);
+            return false;
         }
     }
 

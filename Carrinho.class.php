@@ -1,5 +1,7 @@
 <?php
 
+use modelos\Produto;
+
 class Carrinho
 {
     public function add(Produto $product): void
