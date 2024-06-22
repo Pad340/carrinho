@@ -27,7 +27,7 @@ class CRUD
 
     }
 
-    public function fullRead(string $query)
+    public function fullRead(string $query): false|array
     {
         try {
             $stmt = Connect::getInstance()->prepare($query);

@@ -7,7 +7,7 @@ require "banco/CRUD.php";
 
 $lerPedidos = new CRUD();
 $pedidos = $lerPedidos->fullRead(
-    "SELECT p.pedido_id, pr.nome AS nomeProduto, ip.quantidade, ip.valor_total AS total_produto, p.valor_total AS total_pedido, p.data
+    "SELECT p.pedido_id, pr.nome AS nomeProduto, ip.quantidade, ip.valor_total AS total_produto, p.valor_total AS total_pedido, p.data, pr.valor AS valor_produto
 FROM pedido p
 INNER JOIN itenspedido ip ON p.pedido_id = ip.pedido_id
 INNER JOIN produto pr ON ip.produto_id = pr.produto_id
@@ -49,8 +49,8 @@ $totAllPedidos = 0;
                 <td><?= $pedido['pedido_id']; ?></td>
                 <td><?= $pedido['nomeProduto'] ?></td>
                 <td><?= $pedido['quantidade'] ?></td>
-                <td>R$ <?= number_format($pedido['total_produto'], 2, ',', '.') ?></td>
-                <td><?= number_format($pedido['total_produto'] * $pedido['quantidade'], 2, ',', '.') ?></td>
+                <td>R$ <?= number_format($pedido['valor_produto'], 2, ',', '.') ?></td>
+                <td><?= number_format($pedido['valor_produto'] * $pedido['quantidade'], 2, ',', '.') ?></td>
                 <td><?= "R$ " . number_format($pedido['total_pedido'], 2, ',', '.'); ?></td>
                 <td><?= $pedido['data'] ?></td>
             </tr>
